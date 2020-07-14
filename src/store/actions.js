@@ -3,7 +3,7 @@ export const changeDestinations = data => ({
   payload: data,
 });
 
-export const changeDestinations = data => ({
+export const changeFavorites = data => ({
   type: 'CHANGE_FAVORITES',
   payload: data,
 });
