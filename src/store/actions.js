@@ -22,6 +22,6 @@ export const logOut = () => ({
   type: 'LOG_OUT',
 });
 
-export const toggleMenu = () => {
+export const toggleMenu = () => ({
   type: 'TOGGLE_MENU'
-}
+})
