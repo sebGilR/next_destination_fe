@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import Carousel from '../components/Carousel';
 import Login from '../containers/Login';
 import SignUp from '../containers/SignUp';
-import Home from '../components/Home';
+import Menu from '../components/Menu';
 
 const App = ({
   changeDestinations,
@@ -63,20 +63,20 @@ const App = ({
         <Switch>
           <Route exact path={'/'}>
             {user.connected ?
-              <div>
-                <Carousel destinations={destinations} />
-              </div>
+              <>
+                <Menu user={user} />
+                <div className="content">
+                  <Header />
+                  <Carousel destinations={destinations} />
+                </div>
+              </>
               : <Login />}
           </Route>
           <Route path="/login">
-            {
-              user.connected ? <Redirect to="/" /> : <Login />
-            }
+            {user.connected ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/signup">
-            {
-              user.connected ? <Redirect to="/" /> : <SignUp />
-            }
+            {user.connected ? <Redirect to="/" /> : <SignUp />}
           </Route>
         </Switch>
       </Router>
