@@ -1,24 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Menu = (props) => {
+const Menu = ({ user, handleLogout, handleDelete }) => {
   return (
-    <div>
+    <aside>
       <div>
         <div>
-          L
+          {user.username[0].toUpperCase()}
         </div>
-        <span>@Username here</span>
+        <span>@{user.username}</span>
       </div>
       <ul>
-        <li>Home</li>
-        <li>Favorites</li>
-        <li>Dashboard</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/favorites">Favorites</Link>
+        </li>
+        {
+          user.admin &&
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        }
       </ul>
       <ul>
-        <li>Log out</li>
-        <li>Delete acount</li>
+        <li onClick={handleLogout}>Log out</li>
+        <li onClick={handleDelete}>Delete acount</li>
       </ul>
-    </div>
+    </aside>
   )
 };
 
