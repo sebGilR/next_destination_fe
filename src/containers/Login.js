@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import Axios from 'axios';
 import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
@@ -9,6 +10,7 @@ const Login = props => {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const history = useHistory();
 
   const handleUsername = e => {
     setUsername(e.target.value);
