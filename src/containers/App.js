@@ -10,6 +10,8 @@ import Carousel from '../components/Carousel';
 import Login from '../containers/Login';
 import SignUp from '../containers/SignUp';
 import Menu from '../components/Menu';
+import Home from '../containers/Home';
+import Details from '../components/Details';
 
 const App = ({
   changeDestinations,
@@ -61,23 +63,10 @@ const App = ({
     <div>
       <Router>
         <Switch>
-          <Route exact path={'/'}>
-            {user.connected ?
-              <>
-                <Menu user={user} />
-                <div className="content">
-                  <Header />
-                  <Carousel destinations={destinations} />
-                </div>
-              </>
-              : <Login />}
-          </Route>
-          <Route path="/login">
-            {user.connected ? <Redirect to="/" /> : <Login />}
-          </Route>
-          <Route path="/signup">
-            {user.connected ? <Redirect to="/" /> : <SignUp />}
-          </Route>
+          <Route exact path="/:id" component={user.connected ? Home : Login} />
+          <Route exact path={'/'} component={user.connected ? Home : Login} />
+          <Route path="/login" component={user.connected ? Home : Login} />
+          <Route path="/signup" component={user.connected ? Home : SignUp} />
         </Switch>
       </Router>
     </div>
