@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
+Axios.defaults.withCredentials = true;
 
 const Login = props => {
   const [username, setUsername] = useState('');
@@ -22,15 +23,10 @@ const Login = props => {
     })
       .then(result => {
         props.logIn(result.data);
-        // props.history.push('/home');
+        props.history.push('/');
       })
       .catch(() => setError(true));
   };
-
-  React.useEffect(() => {
-    props.user.message ? console.log('logged in')
-      : console.log('undefined')
-  }, [props.user]);
 
   return (
     <div>
@@ -54,6 +50,7 @@ const Login = props => {
               'There was an error when trying to sign in. Please verify your credentials.' :
               null
           }
+          <p>Don't have an account yet? Sign up</p>
         </form>
       </div>
     </div>
