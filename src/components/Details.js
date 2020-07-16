@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
@@ -6,7 +6,6 @@ import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 
 const Details = ({
-  destinations,
   user,
   logIn,
   loading,
@@ -15,10 +14,11 @@ const Details = ({
   removeFavorite,
 }) => {
   const { id } = useParams();
+  const [destination, setDestination] = useState({});
   const [error, setError] = useState(false);
-  const destination = destinations.find(e => e.id === parseInt(id));
   const favorite = user.favorites.find(f => f.destination_id === parseInt(id));
 
+  // Handlers
   const handleMarkFavorite = () => {
     startLoading();
     Axios.post(`${EP.BASE}${EP.FAV}`,
@@ -45,8 +45,25 @@ const Details = ({
     endLoading()
   }
 
+  const handleFetchDestination = useCallback(() => {
+    startLoading();
+
+    Axios.get(`${EP.BASE}${EP.DEST}/${id}`)
+      .then(result => {
+        setDestination(result.data.destination)
+      })
+      .catch(setError());
+    endLoading();
+  }, [startLoading, endLoading, setError, setDestination, id]);
+
+  // Effects
+  React.useEffect(() => {
+    handleFetchDestination();
+  }, [handleFetchDestination]);
+
   return (
-    <>{error && 'something went wrong... Try reloading this page.'}
+    <>
+      {error && 'something went wrong... Try reloading this page.'}
       <section>
         <div>
           <img src="https://picsum.photos/300/280" alt="Img" />
