@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import Axios from 'axios';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Login from '../containers/Login';
@@ -63,10 +63,12 @@ const App = ({
         loading ? 'Loading content...' :
           <Router>
             <Switch>
-              <Route exact path="/:id" component={user.connected ? Home : Login} />
-              <Route exact path={'/'} component={user.connected ? Home : Login} />
-              <Route path="/login" component={user.connected ? Home : Login} />
+              <Route exact path="/" component={user.connected ? Home : Login} />
+              <Route path="/login" component={user.connected ? Home : Login}>
+                {user.connected ? <Redirect to="/" /> : <Login />}
+              </Route>
               <Route path="/signup" component={user.connected ? Home : SignUp} />
+              <Route exact path="/:id" component={user.connected ? Home : Login} />
             </Switch>
           </Router>
       }
