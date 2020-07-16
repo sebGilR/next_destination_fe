@@ -5,6 +5,11 @@ const userReducer = (state = {}, action) => {
       return { ...action.payload };
     case 'LOG_OUT':
       return {};
+    case 'REMOVE_FAVORITE':
+      return {
+        ...state,
+        favorites: state.favorites.filter(f => f.id !== action.payload),
+      }
     default:
       return state;
   };
