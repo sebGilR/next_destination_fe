@@ -8,24 +8,22 @@ import Favorites from '../components/Favorites';
 import Details from '../components/Details';
 import Dashboard from '../components/Dashboard';
 
-const Home = ({ user, destinations }) => {
-  return (
-    <Router>
-      <Menu user={user} />
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Carousel destinations={destinations} />
-        </Route>
-        <Route path="/favorites">
-          <Favorites favorites={user.favorites} />
-        </Route>
-        <Route path="/dashboard" component={user.admin && Dashboard} />
-        <Route exact path="/:id" children={<Details />} />
-      </Switch>
-    </Router>
-  )
-};
+const Home = ({ user, destinations }) => (
+  <Router>
+    <Menu user={user} />
+    <Header />
+    <Switch>
+      <Route exact path="/">
+        <Carousel destinations={destinations} />
+      </Route>
+      <Route path="/favorites">
+        <Favorites favorites={user.favorites} />
+      </Route>
+      <Route path="/dashboard" component={user.admin && Dashboard} />
+      <Route exact path="/:id" children={<Details />} />
+    </Switch>
+  </Router>
+);
 
 const mapStateToProps = state => ({
   user: state.user,

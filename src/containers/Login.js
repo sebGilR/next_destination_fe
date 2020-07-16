@@ -25,7 +25,7 @@ const Login = props => {
     })
       .then(result => {
         props.logIn(result.data);
-        props.history.push('/');
+        history.push('/');
       })
       .catch(() => setError(true));
   };
