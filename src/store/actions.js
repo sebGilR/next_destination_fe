@@ -3,8 +3,8 @@ export const changeDestinations = data => ({
   payload: data,
 });
 
-export const changeFavorites = data => ({
-  type: 'CHANGE_FAVORITES',
+export const removeFavorite = data => ({
+  type: 'REMOVE_FAVORITE',
   payload: data,
 });
 
@@ -24,4 +24,12 @@ export const logOut = () => ({
 
 export const toggleMenu = () => ({
   type: 'TOGGLE_MENU'
-})
+});
+
+export const startLoading = () => ({
+  type: 'START_LOADING'
+});
+
+export const endLoading = () => ({
+  type: 'END_LOADING'
+});
