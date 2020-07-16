@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Menu = ({ user, handleLogout, handleDelete }) => {
+const Menu = ({ user, handleLogOut, handleDelete }) => {
   return (
     <aside>
       <div>
@@ -19,7 +19,7 @@ const Menu = ({ user, handleLogout, handleDelete }) => {
         }
       </ul>
       <ul>
-        <li onClick={handleLogout}>Log out</li>
+        <li onClick={handleLogOut}>Log out</li>
         <li onClick={handleDelete}>Delete acount</li>
       </ul>
     </aside>
