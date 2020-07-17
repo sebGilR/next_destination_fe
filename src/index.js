@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
 import rootReducer from './store/reducers';
+import './assets/style/reset.css'
 
 const store = createStore(rootReducer, {
   user: {},
   destinations: [],
-  favorites: [],
   menu: false,
 },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
