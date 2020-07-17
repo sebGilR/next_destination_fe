@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
+import styles from '../assets/style/Login.module.scss';
+import { Link } from 'react-router-dom';
 
 const SignUp = props => {
   const [username, setUsername] = useState('');
@@ -33,13 +35,13 @@ const SignUp = props => {
   }, [props.user]);
 
   return (
-    <div>
-      <div>
-
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
         <h1>Sign up</h1>
         <p>Hello there! Sign up to start making your travel plans!</p>
         <form onSubmit={handleSubmit}>
           <input
+            className={styles.input}
             type="text"
             value={username}
             placeholder="Enter a username..."
@@ -47,13 +49,18 @@ const SignUp = props => {
           />
           {
             loading ?
-              <p>Creating your account...</p> : <button type="submit">Sign un</button>
+              <p>Creating your account...</p> :
+              <button type="submit" className={styles.button}>Sign up</button>
           }
           {
             error ?
               'There was an error when trying to sign in. Please verify your credentials.' :
               null
           }
+          <p className={styles.alt}>
+            Already have an account?
+            <Link to="/login"> Sign in</Link>
+          </p>
         </form>
       </div>
     </div>
