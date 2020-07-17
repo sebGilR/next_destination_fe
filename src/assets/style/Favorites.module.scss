@@ -1,0 +1,74 @@
+.header {
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+  padding: 20px 0;
+  overflow-y: auto;
+  border-spacing: 0;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #EE5419;
+    border-radius: 2px;
+  }
+
+  thead {
+    text-align: left;
+    th {
+      font-weight: 500;
+      padding: 15px 30px;
+    }
+  }
+
+  tbody tr{
+    td {
+      line-height: 30px;
+    }
+
+    td:first-child {
+      width: 70%;
+      padding: 10px 10px 10px 30px;
+
+      & > a {
+        display: inline-block;
+        width: 100%;
+        line-height: 30px;
+
+        &:hover {
+          color: #EE5419;
+        }
+      }
+    }
+
+    td:last-child {
+      width: 30%;
+      position: relative;
+      padding-right: 30px;
+    }
+
+    button {
+      display: inline-block;
+      border: none;
+      background-color: transparent;
+      width: 100%;
+      min-width: 75px;
+      height: 30px;
+      border-radius: 15px;
+      border: 1px solid lightgray;
+
+      &:hover {
+        background-color: #EE5419;
+      }
+    }
+
+    &:hover {
+      background-color: white;
+    }
+  }
+}

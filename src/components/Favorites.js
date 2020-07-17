@@ -5,10 +5,11 @@ import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import styles from '../assets/style/Favorites.module.scss';
 
 const Favorites = ({
-  user,
-  logIn,
+  toggleMenu,
   favorites,
   destinations,
   loading,
@@ -29,9 +30,11 @@ const Favorites = ({
     endLoading();
   }
   return (
-    <>
+    <><div className={styles.header}>
+      <Header title="Favorites" toggleMenu={toggleMenu} />
+    </div>
       {error && 'Something went wrong... Try reloading this page.'}
-      < table >
+      <table className={styles.container}>
         <thead>
           <tr>
             <th>Destination</th>
@@ -48,7 +51,7 @@ const Favorites = ({
                 </td>
                 <td>
                   {!loading &&
-                    <button onClick={() => handleRemoveFavorite(favorite.id)}>Remove from favorites</button>
+                    <button onClick={() => handleRemoveFavorite(favorite.id)}>Remove</button>
                   }
                 </td>
               </tr>
@@ -65,6 +68,7 @@ const mapStateToProps = state => ({
   user: state.user,
   destinations: state.destinations,
   loading: state.loading,
+  menu: state.menu,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -72,6 +76,7 @@ const mapDispatchToProps = dispatch => ({
   startLoading: () => dispatch(Actions.startLoading()),
   endLoading: () => dispatch(Actions.endLoading()),
   removeFavorite: data => dispatch(Actions.removeFavorite(data)),
+  toggleMenu: () => dispatch(Actions.toggleMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
