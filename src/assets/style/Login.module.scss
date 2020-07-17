@@ -1,0 +1,82 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background: #fff url(../images/loginbg.jpg) no-repeat bottom center;
+  background-size: cover;
+  color: rgb(58, 58, 58);
+}
+
+.formContainer {
+  background-color: rgba(255, 255, 255, 0.767);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+
+  h1 {
+    font-weight: 400;
+    padding: 20px;
+  }
+
+  & > p {
+    padding: 0 25%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.input {
+  margin: 10px 0;
+  padding: 10px;
+  height: 30px;
+  width: 220px;
+  line-height: 30px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  background-color: transparent ;
+  text-align: center;
+  color: gray;
+  outline: none;
+
+  &:hover, &:focus   {
+    border: 1px solid #EE5419;
+    color: #EE5419;
+    box-shadow: 0 0 10px #ee551977;
+  }
+}
+
+.button {
+  margin: 15px 0;
+  padding: 0 30px;
+  height: 30px;
+  line-height: 30px;
+  background-color:  #EE5419;
+  color: white;
+  border: 0;
+  border-radius: 15px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    box-shadow: 0 0 15px #ee551977;
+  }
+}
+
+.alt {
+  position: absolute;
+  bottom: 40px;
+  text-align: center;
+
+  a:hover {
+    color: #EE5419;
+  }
+}
