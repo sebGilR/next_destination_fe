@@ -1,0 +1,42 @@
+.container {
+  position: absolute;
+  width: 55%;
+  height: 100%;
+  background-color: #F7F5FA;
+  box-shadow: inset -15px 0px 37px -5px rgba(0, 0, 0, 0.253);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 110%;
+}
+
+.hidden {
+  width: 0;
+  overflow: hidden;
+  margin-left: -50px;
+}
+
+.icon {
+  background-color: #8CEBE2;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;
+  margin-bottom: 20px;
+}
+
+.username {
+  color: rgb(97, 97, 97);
+}
+
+.nav {
+  margin-top: -150px;
+  margin-left: -25px;
+  padding-left: 25px;
+}
+
+li {
+  padding: 13px 0 ;
+}
