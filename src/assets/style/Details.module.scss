@@ -32,7 +32,7 @@
   span {
     position: absolute;
     bottom: 10px;
-    left: 10px;
+    left: 20px;
     font-weight: bold;
     color: white;
     font-size: 130%;
@@ -60,6 +60,12 @@
     color: white;
     position: absolute;
     bottom: 0;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      box-shadow: 0 0 15px #ee551977;
+    }
   }
 }
 
@@ -73,6 +79,6 @@
     font-size: 1em;
     font-weight: 500;
     margin-bottom: 10px;
-    color: black;
+    color: rgb(42, 42, 42);
   }
 }

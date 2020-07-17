@@ -31,12 +31,18 @@
   color: rgb(97, 97, 97);
 }
 
-.nav {
+.nav, ul {
   margin-top: -150px;
   margin-left: -25px;
-  padding-left: 25px;
+  
 }
 
 li {
-  padding: 13px 0 ;
+  padding: 13px 0 13px 25px;
+  cursor: pointer;
+
+  &:hover {
+    padding-left: 23px;
+    border-left: 2px solid #EE5419;
+  }
 }

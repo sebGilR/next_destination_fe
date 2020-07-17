@@ -2,6 +2,7 @@
   position: relative;
   min-width: 80vw;
   margin-left: 12px;
+  user-select: none;
 
   img {
     object-fit: cover;
@@ -15,6 +16,10 @@
   border-radius: 5px;
   background-color: white;
   box-shadow: 0 0 40px rgba(65, 65, 65, 0.226);
+
+  &:hover h3 {
+    color: #EE5419;
+  }
 }
 
 .info {
