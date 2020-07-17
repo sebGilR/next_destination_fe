@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
+import Header from './Header';
+import styles from '../assets/style/Details.module.scss';
 
 const Details = ({
   user,
@@ -12,6 +14,7 @@ const Details = ({
   startLoading,
   endLoading,
   removeFavorite,
+  toggleMenu,
 }) => {
   const { id } = useParams();
   const [destination, setDestination] = useState({});
@@ -41,7 +44,7 @@ const Details = ({
       .then(() => {
         removeFavorite(favorite.id);
       })
-      .catch(setError(true));
+      .catch(() => setError(true));
     endLoading()
   }
 
@@ -50,7 +53,7 @@ const Details = ({
 
     Axios.get(`${EP.BASE}${EP.DEST}/${id}`)
       .then(result => {
-        setDestination(result.data.destination)
+        setDestination(result.data.destination);
       })
       .catch(setError());
     endLoading();
@@ -62,19 +65,19 @@ const Details = ({
   }, [handleFetchDestination]);
 
   return (
-    <>
+    <section className={styles.container}>
+      {!loading && <Header title={destination.name} toggleMenu={toggleMenu} />}
       {error && 'something went wrong... Try reloading this page.'}
-      <section>
-        <div>
-          <img src="https://picsum.photos/300/280" alt="Img" />
-          {
-            loading ?
-              'Loading...' :
-              <span>{destination.favorites_count}</span>
-          }
-
-        </div>
-        <div>
+      <div className={styles.image}>
+        <img src="https://picsum.photos/300/280" alt="Img" />
+        {
+          loading ?
+            'Loading...' :
+            <span><i className={`fas fa-star ${styles.icon}`}> </i>{destination.favorites_count}</span>
+        }
+      </div>
+      <div className={styles.body}>
+        <div className={styles.description}>
           <h2>About this destination</h2>
           {
             loading ?
@@ -90,8 +93,8 @@ const Details = ({
           !loading && favorite &&
           <button onClick={handleRemoveFavorite}>Remove from favorites</button>
         }
-      </section>
-    </>
+      </div>
+    </section>
   )
 };
 
@@ -100,6 +103,7 @@ const mapStateToProps = state => ({
   user: state.user,
   destinations: state.destinations,
   loading: state.loading,
+  menu: state.menu,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -107,6 +111,7 @@ const mapDispatchToProps = dispatch => ({
   startLoading: () => dispatch(Actions.startLoading()),
   endLoading: () => dispatch(Actions.endLoading()),
   removeFavorite: data => dispatch(Actions.removeFavorite(data)),
+  toggleMenu: () => dispatch(Actions.toggleMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
