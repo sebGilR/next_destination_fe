@@ -79,18 +79,13 @@ const App = ({
 
 const mapStateToProps = state => ({
   user: state.user,
-  destinations: state.destinations,
-  favorites: state.favorites,
-  menu: state.menu,
   loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeDestinations: data => dispatch(Actions.changeDestinations(data)),
-  createUser: data => dispatch(Actions.createUser(data)),
   logIn: data => dispatch(Actions.logIn(data)),
   logOut: () => dispatch(Actions.logOut()),
-  toggleMenu: () => dispatch(Actions.toggleMenu()),
   startLoading: () => dispatch(Actions.startLoading()),
   endLoading: () => dispatch(Actions.endLoading()),
 });
