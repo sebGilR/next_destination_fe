@@ -69,7 +69,7 @@ const Details = ({
       {!loading && <Header title={destination.name} toggleMenu={toggleMenu} />}
       {error && 'something went wrong... Try reloading this page.'}
       <div className={styles.image}>
-        <img src="https://picsum.photos/300/280" alt="Img" />
+        <img src={destination.img_url} alt={destination.name} />
         {
           loading ?
             'Loading...' :
