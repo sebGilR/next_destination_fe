@@ -6,6 +6,7 @@ import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
 import DestinationForm from '../components/DestinationForm';
+import styles from '../assets/style/Dashboard.module.scss';
 
 const Dashboard = ({
   destinations,
@@ -81,32 +82,45 @@ const Dashboard = ({
   }, [dest])
 
   return (
-    <section>
-      {!loading && <Header title="Dashboard" toggleMenu={toggleMenu} />}
+    <section className={styles.wrapper}>
+      {!loading &&
+        <Header
+          title="Dashboard"
+          toggleMenu={toggleMenu}
+          className={styles.header}
+        />
+      }
       {error && 'Something went wrong... Try reloading this page.'}
-      <button name="new" onClick={handleForm}>New destination</button>
+
+      {!form &&
+        <button name="new" onClick={handleForm} className={styles.new}>
+          New destination
+        </button>
+      }
+
+
       {!loading && !form &&
-        <table>
+        <table className={styles.container}>
           <thead>
             <tr>
-              <th>Destinations</th>
+              <th colSpan={3}>Destinations</th>
             </tr>
           </thead>
           <tbody>
             {
               destinations.map(destination =>
                 <tr key={destination.id}>
-                  <th>
+                  <td>
                     <Link to={`/${destination.id}`}>
                       {destination.name}
                     </Link>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <button name="edit" onClick={() => setDest(destination)}>Edit</button>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <button onClick={() => handleDelete(destination.id)}>Delete</button>
-                  </th>
+                  </td>
                 </tr>
               )
             }
