@@ -1,10 +1,8 @@
 import React from 'react';
 import Item from './Item';
 import styles from '../assets/style/Carousel.module.scss';
-import { useState } from 'react';
 import $ from 'jquery';
 import 'jquery-mousewheel';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Carousel = ({ destinations, menu }) => {
 
