@@ -3,6 +3,22 @@ export const changeDestinations = data => ({
   payload: data,
 });
 
+export const addDestination = data => ({
+  type: 'ADD_DESTINATION',
+  payload: data,
+});
+
+export const updateDestinations = data => ({
+  type: 'UPDATE_DESTINATION',
+  payload: data,
+  id: data.id,
+});
+
+export const removeDestination = data => ({
+  type: 'REMOVE_DESTINATION',
+  payload: data,
+});
+
 export const removeFavorite = data => ({
   type: 'REMOVE_FAVORITE',
   payload: data,
