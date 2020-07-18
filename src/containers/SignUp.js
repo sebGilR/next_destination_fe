@@ -8,11 +8,20 @@ import { Link } from 'react-router-dom';
 
 const SignUp = props => {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [password_conf, setPasswordConf] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleUsername = e => {
-    setUsername(e.target.value);
+  const handleInput = e => {
+    const field = e.target;
+    if (field.name === 'username') {
+      setUsername(field.value);
+    } else if (field.name === 'password') {
+      setPassword(field.value);
+    } else {
+      setPasswordConf(field.value);
+    };
   };
 
   const handleSubmit = e => {
@@ -21,10 +30,11 @@ const SignUp = props => {
 
     Axios.post(`${EP.BASE}${EP.USERS}`, {
       username: username,
+      password: password,
+      password_confirmation: password_conf,
     })
       .then(result => {
         props.createUser(result.data);
-        // props.history.push('/home');
       })
       .catch(() => setError(true));
   };
@@ -33,6 +43,22 @@ const SignUp = props => {
     props.user.message ? console.log('logged in')
       : console.log('undefined')
   }, [props.user]);
+
+  const testPasswors = () => {
+    if (password.length < 5 || username.length < 3) {
+      return (
+        <>
+          <small>Your password should be at least 5 characters.</small>
+          <small>Your username should be at least 3 characters long.</small>
+        </>
+      )
+    } else if (password === password_conf && password.length > 5 && username.length > 3) {
+      return <button type="submit" className={styles.button}>Sign up</button>
+    } else {
+      return <small style={{ color: '#EE5419' }}>The passwords entered do not match.</small>
+    }
+
+  }
 
   return (
     <div className={styles.container}>
@@ -43,18 +69,35 @@ const SignUp = props => {
           <input
             className={styles.input}
             type="text"
+            name="username"
             value={username}
             placeholder="Enter a username..."
-            onChange={handleUsername}
+            onChange={handleInput}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={handleInput}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            name="password_conf"
+            value={password_conf}
+            placeholder="Confirm your password"
+            onChange={handleInput}
           />
           {
             loading ?
-              <p>Creating your account...</p> :
-              <button type="submit" className={styles.button}>Sign up</button>
+              'Creating account...' :
+              testPasswors()
           }
           {
             error ?
-              'There was an error when trying to sign in. Please verify your credentials.' :
+              'There was an error signing up. Please try again.' :
               null
           }
           <p className={styles.alt}>

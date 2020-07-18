@@ -12,17 +12,24 @@ const Login = ({
   loading,
 }) => {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
-  const handleUsername = e => {
-    setUsername(e.target.value);
-  };
+  const handleInput = e => {
+    const field = e.target;
+    if (field.name === 'username') {
+      setUsername(field.value);
+    } else if (field.name === 'password') {
+      setPassword(field.value);
+    };
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
 
     Axios.post(`${EP.BASE}${EP.AUTH}/login`, {
       username: username,
+      password: password,
     })
       .then(result => {
         logIn(result.data);
@@ -35,14 +42,22 @@ const Login = ({
       <div className={styles.formContainer}>
         <h1>Sign in</h1>
         <p>Hello there! Sign in to start making your travel plans!</p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <input
             className={styles.input}
             type="text"
             name="username"
             value={username}
             placeholder="Enter your username"
-            onChange={handleUsername}
+            onChange={handleInput}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={handleInput}
           />
           {
             loading ?
@@ -51,7 +66,7 @@ const Login = ({
           }
           {
             error ?
-              'Make sure your credentials are correct.' :
+              <small style={{ color: '#EE5419' }}>Make sure your credentials are correct.</small> :
               null
           }
           <p className={styles.alt}>
