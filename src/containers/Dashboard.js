@@ -92,18 +92,16 @@ const Dashboard = ({
       }
       {error && 'Something went wrong... Try reloading this page.'}
 
-      {!form &&
-        <button name="new" onClick={handleForm} className={styles.new}>
-          New destination
-        </button>
-      }
-
-
       {!loading && !form &&
         <table className={styles.container}>
           <thead>
             <tr>
-              <th colSpan={3}>Destinations</th>
+              <th colSpan={1}>Destinations</th>
+              <th colSpan={2}>
+                <button name="new" onClick={handleForm} className={styles.new}>
+                  New destination
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody>

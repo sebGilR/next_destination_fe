@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../assets/style/Menu.module.scss';
 
-const Menu = ({ user, handleLogOut, handleDelete, menu, toggleMenu }) => {
+const Menu = ({ user, handleLogOut, menu, toggleMenu }) => {
   return (
     <aside className={`${styles.container} ${!menu && styles.hidden}`.trim()}>
       <div>
@@ -13,7 +13,10 @@ const Menu = ({ user, handleLogOut, handleDelete, menu, toggleMenu }) => {
       </div>
       <ul className={styles.nav}>
         <li><Link to="/" onClick={toggleMenu}>Home</Link> </li>
-        <li><Link to="/favorites" onClick={toggleMenu}>Favorites</Link> </li>
+        <li><Link to="/favorites" onClick={toggleMenu}>
+          Favorites
+          <span className={styles.tag}>{user.favorites.length}</span>
+        </Link></li>
         {
           user.admin &&
           <li><Link to="/dashboard" onClick={toggleMenu}>Dashboard</Link></li>
