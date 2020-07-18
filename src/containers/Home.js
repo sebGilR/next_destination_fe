@@ -7,7 +7,7 @@ import Menu from '../components/Menu';
 import Carousel from '../components/Carousel';
 import Favorites from '../components/Favorites';
 import Details from '../components/Details';
-import Dashboard from '../components/Dashboard';
+import Dashboard from './Dashboard';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 
