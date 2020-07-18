@@ -8,7 +8,7 @@ const Carousel = ({ destinations, menu }) => {
 
   $(document).ready(function () {
     $(`.${styles.slider}`).mousewheel(function (e, delta) {
-      this.scrollLeft -= (delta * 30);
+      this.scrollLeft -= (delta * 50);
     });
   });
 
