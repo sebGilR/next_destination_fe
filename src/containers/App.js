@@ -11,6 +11,7 @@ import Home from '../containers/Home';
 
 const App = ({
   changeDestinations,
+  destinations,
   user,
   logIn,
   logOut,
@@ -50,11 +51,11 @@ const App = ({
   // Effects
   React.useEffect(() => {
     verifyConnection();
-  }, [verifyConnection]);
+  }, [verifyConnection, destinations]);
 
   React.useEffect(() => {
     handleFetchDestinations();
-  }, [handleFetchDestinations]);
+  }, [handleFetchDestinations, user.favorites]);
 
   return (
     <div>
@@ -64,10 +65,12 @@ const App = ({
           <Router>
             <Switch>
               <Route exact path="/" component={user.connected ? Home : Login} />
-              <Route path="/login" component={user.connected ? Home : Login}>
+              <Route path="/login">
                 {user.connected ? <Redirect to="/" /> : <Login />}
               </Route>
-              <Route path="/signup" component={user.connected ? Home : SignUp} />
+              <Route path="/signup" >
+                {user.connected ? <Redirect to="/" /> : <SignUp />}
+              </Route>
               <Route exact path="/:id" component={user.connected ? Home : Login} />
             </Switch>
           </Router>
