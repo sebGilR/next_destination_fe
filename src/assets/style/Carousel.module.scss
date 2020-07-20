@@ -22,12 +22,12 @@
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
 
-  & > a:last-child {
+  & > div:last-child {
     padding-right: 25px;
     min-width: calc(80vw + 25px);
   }
 
-  & > a:first-child {
+  & > div:first-child {
     margin-left: 25px;
   }
 
