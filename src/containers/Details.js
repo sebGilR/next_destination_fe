@@ -19,7 +19,7 @@ const Details = ({
   const { id } = useParams();
   const [destination, setDestination] = useState({});
   const [error, setError] = useState(false);
-  const favorite = user.favorites.find(f => f.destination_id === parseInt(id));
+  const favorite = user.favorites.find(f => f.destination_id === parseInt(id, 10));
 
   // Handlers
   const handleMarkFavorite = () => {
@@ -32,10 +32,10 @@ const Details = ({
         logIn(result.data);
       })
       .catch(() => {
-        setError(true)
+        setError(true);
       });
     endLoading();
-  }
+  };
 
   const handleRemoveFavorite = () => {
     startLoading();
@@ -45,8 +45,8 @@ const Details = ({
         removeFavorite(favorite.id);
       })
       .catch(() => setError(true));
-    endLoading()
-  }
+    endLoading();
+  };
 
   const handleFetchDestination = useCallback(() => {
     startLoading();
@@ -71,31 +71,36 @@ const Details = ({
       <div className={styles.image}>
         <img src={destination.img_url} alt={destination.name} />
         {
-          loading ?
-            'Loading...' :
-            <span><i className={`fas fa-star ${styles.icon}`}> </i>{destination.favorites_count}</span>
+          loading
+            ? 'Loading...'
+            : (
+              <span>
+                <i className={`fas fa-star ${styles.icon}`}> </i>
+                {destination.favorites_count}
+              </span>
+            )
         }
       </div>
       <div className={styles.body}>
         <div className={styles.description}>
           <h2>About this destination</h2>
           {
-            loading ?
-              'Loading...' :
-              <p>{destination.description}</p>
+            loading
+              ? 'Loading...'
+              : <p>{destination.description}</p>
           }
         </div>
         {
-          !loading && !favorite &&
-          <button onClick={handleMarkFavorite}>Save to favorites</button>
+          !loading && !favorite
+          && <button type="button" onClick={handleMarkFavorite}>Save to favorites</button>
         }
         {
-          !loading && favorite &&
-          <button onClick={handleRemoveFavorite}>Remove from favorites</button>
+          !loading && favorite
+          && <button type="button" onClick={handleRemoveFavorite}>Remove from favorites</button>
         }
       </div>
     </section>
-  )
+  );
 };
 
 const mapStateToProps = state => ({

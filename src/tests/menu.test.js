@@ -14,4 +14,3 @@ describe('menuReducer', () => {
     expect(menuReducer(false, { type: 'OTHER' })).toEqual(false);
   });
 });
-

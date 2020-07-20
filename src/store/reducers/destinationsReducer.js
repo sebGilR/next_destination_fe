@@ -8,14 +8,14 @@ const destinationsReducer = (state = [], action) => {
       return [
         ...state.filter(dest => dest.id !== action.id),
         action.payload,
-      ]
+      ];
     case 'REMOVE_DESTINATION':
       return [
         ...state.filter(dest => dest.id !== action.payload),
-      ]
+      ];
     default:
       return state;
-  };
+  }
 };
 
 export default destinationsReducer;

@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+
 import Axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Switch, Route, Redirect,
+} from 'react-router-dom';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
-import Login from '../containers/Login';
-import SignUp from '../containers/SignUp';
-import Home from '../containers/Home';
+import Login from './Login';
+import SignUp from './SignUp';
+import Home from './Home';
 
 const App = ({
   changeDestinations,
@@ -43,9 +45,9 @@ const App = ({
           logIn(result.data);
         } else if (!result.data.connected && user.connected) {
           logOut();
-        };
+        }
       })
-      .catch(() => setError())
+      .catch(() => setError());
   }, [logIn, logOut, user.connected]);
 
   // Effects
@@ -61,23 +63,25 @@ const App = ({
     <div>
       {error ? 'Something went wrong' : null}
       {
-        loading ? 'Loading content...' :
-          <Router>
-            <Switch>
-              <Route exact path="/" component={user.connected ? Home : Login} />
-              <Route path="/login">
-                {user.connected ? <Redirect to="/" /> : <Login />}
-              </Route>
-              <Route path="/signup" >
-                {user.connected ? <Redirect to="/" /> : <SignUp />}
-              </Route>
-              <Route exact path="/:id" component={user.connected ? Home : Login} />
-            </Switch>
-          </Router>
+        loading ? 'Loading content...'
+          : (
+            <Router>
+              <Switch>
+                <Route exact path="/" component={user.connected ? Home : Login} />
+                <Route path="/login">
+                  {user.connected ? <Redirect to="/" /> : <Login />}
+                </Route>
+                <Route path="/signup">
+                  {user.connected ? <Redirect to="/" /> : <SignUp />}
+                </Route>
+                <Route exact path="/:id" component={user.connected ? Home : Login} />
+              </Switch>
+            </Router>
+          )
       }
 
     </div>
-  )
+  );
 };
 
 const mapStateToProps = state => ({

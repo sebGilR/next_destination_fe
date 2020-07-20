@@ -9,10 +9,10 @@ const userReducer = (state = {}, action) => {
       return {
         ...state,
         favorites: state.favorites.filter(f => f.id !== action.payload),
-      }
+      };
     default:
       return state;
-  };
+  }
 };
 
 export default userReducer;

@@ -22,9 +22,8 @@ const Dashboard = ({
   const [form, setForm] = useState(false);
   const [newD, setNewD] = useState(false);
   const [dest, setDest] = useState({});
-  console.log(dest);
 
-  const handleForm = e => {
+  const handleForm = () => {
     setForm(true);
     setNewD(true);
     setDest({});
@@ -33,16 +32,16 @@ const Dashboard = ({
   const handleClose = () => {
     setForm(false);
     setNewD(false);
-  }
+  };
 
-  const handleSubmit = (name, description, img_url, id = 0) => {
+  const handleSubmit = (name, description, imgUrl, id = 0) => {
     startLoading();
 
     if (newD) {
       Axios.post(`${EP.BASE}${EP.DEST}`, {
-        name: name,
-        description: description,
-        img_url: img_url
+        name,
+        description,
+        img_url: imgUrl,
       }, { withCredentials: true })
         .then(result => {
           addDestination(result.data.destination);
@@ -50,9 +49,9 @@ const Dashboard = ({
         .catch(() => setError(true));
     } else {
       Axios.put(`${EP.BASE}${EP.DEST}/${id}`, {
-        name: name,
-        description: description,
-        img_url: img_url
+        name,
+        description,
+        img_url: imgUrl,
       }, { withCredentials: true })
         .then(result => {
           updateDestinations(result.data.destination);
@@ -72,65 +71,73 @@ const Dashboard = ({
       .then(() => removeDestination(id))
       .catch(() => setError(true));
     endLoading();
-  }
+  };
 
   React.useEffect(() => {
     if (dest.id) {
       setForm(true);
       setNewD(false);
     }
-  }, [dest])
+  }, [dest]);
 
   return (
     <section className={styles.wrapper}>
-      {!loading &&
-        <Header
-          title="Dashboard"
-          toggleMenu={toggleMenu}
-          className={styles.header}
-        />
-      }
-      {error && 'Something went wrong... Try reloading this page.'}
+      {!loading
+        && (
+          <Header
+            title="Dashboard"
+            toggleMenu={toggleMenu}
+            className={styles.header}
+          />
+        )}
+      {error && !dest && 'Something went wrong... Try reloading this page.'}
 
-      {!loading && !form &&
-        <table className={styles.container}>
-          <thead>
-            <tr>
-              <th colSpan={1}>Destinations</th>
-              <th colSpan={2}>
-                <button name="new" onClick={handleForm} className={styles.new}>
-                  New destination
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              destinations.map(destination =>
-                <tr key={destination.id}>
-                  <td>
-                    <Link to={`/${destination.id}`}>
-                      {destination.name}
-                    </Link>
-                  </td>
-                  <td>
-                    <button name="edit" onClick={() => setDest(destination)}>Edit</button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleDelete(destination.id)}>Delete</button>
-                  </td>
-                </tr>
-              )
-            }
-          </tbody>
-        </table>
-      }
-      {form &&
-        <DestinationForm dest={dest} newD={newD} handleClose={handleClose} handleSubmit={handleSubmit} />
-      }
+      {!loading && !form
+        && (
+          <table className={styles.container}>
+            <thead>
+              <tr>
+                <th colSpan={1}>Destinations</th>
+                <th colSpan={2}>
+                  <button type="button" name="new" onClick={handleForm} className={styles.new}>
+                    New destination
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                destinations.map(destination => (
+                  <tr key={destination.id}>
+                    <td>
+                      <Link to={`/${destination.id}`}>
+                        {destination.name}
+                      </Link>
+                    </td>
+                    <td>
+                      <button type="button" name="edit" onClick={() => setDest(destination)}>Edit</button>
+                    </td>
+                    <td>
+                      <button type="button" onClick={() => handleDelete(destination.id)}>Delete</button>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        )}
+      {form
+        && (
+        <DestinationForm
+          dest={dest}
+          newD={newD}
+          handleClose={handleClose}
+          handleSubmit={handleSubmit}
+        />
+        )}
     </section>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   user: state.user,

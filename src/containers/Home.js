@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Switch, Route, useHistory,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import Header from '../components/Header';
@@ -11,7 +13,9 @@ import Dashboard from './Dashboard';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 
-const Home = ({ user, destinations, logOut, menu, toggleMenu }) => {
+const Home = ({
+  user, destinations, logOut, menu, toggleMenu,
+}) => {
   const history = useHistory();
   const handleLogOut = () => {
     Axios.delete(`${EP.BASE}${EP.AUTH}/logout`,
@@ -39,7 +43,7 @@ const Home = ({ user, destinations, logOut, menu, toggleMenu }) => {
         </Route>
       </Switch>
     </Router>
-  )
+  );
 };
 
 const mapStateToProps = state => ({

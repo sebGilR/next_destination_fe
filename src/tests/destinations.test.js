@@ -1,5 +1,7 @@
 import destinationsReducer from '../store/reducers/destinationsReducer';
-import { changeDestinations, addDestination, updateDestinations, removeDestination } from '../store/actions';
+import {
+  changeDestinations, addDestination, updateDestinations, removeDestination,
+} from '../store/actions';
 
 describe('destinationsReducer', () => {
   describe('CHANGE_DESTINATIONS', () => {
@@ -7,7 +9,8 @@ describe('destinationsReducer', () => {
 
     it('Replaces existing destinations with the action payload', () => {
       expect(
-        destinationsReducer([], changeDestinations(payload)))
+        destinationsReducer([], changeDestinations(payload)),
+      )
         .toEqual(['Dest 1', 'Dest 2']);
     });
   });
@@ -19,7 +22,8 @@ describe('destinationsReducer', () => {
       const expected = ['Prev Dest', 'Dest 1'];
 
       expect(
-        destinationsReducer(current, addDestination(payload)))
+        destinationsReducer(current, addDestination(payload)),
+      )
         .toEqual(expected);
     });
   });
@@ -31,7 +35,8 @@ describe('destinationsReducer', () => {
       const expected = [{ id: 2 }, { id: 1, data: 'changed' }];
 
       expect(
-        destinationsReducer(current, updateDestinations(payload)))
+        destinationsReducer(current, updateDestinations(payload)),
+      )
         .toEqual(expected);
     });
   });
@@ -43,7 +48,8 @@ describe('destinationsReducer', () => {
       const current = [{ id: 2 }, { id: 1, data: 'changed' }];
 
       expect(
-        destinationsReducer(current, removeDestination(payload)))
+        destinationsReducer(current, removeDestination(payload)),
+      )
         .toEqual(expected);
     });
   });
@@ -53,5 +59,5 @@ describe('destinationsReducer', () => {
 
     expect(destinationsReducer(current, { type: 'OTHER' }))
       .toEqual(current);
-  })
+  });
 });

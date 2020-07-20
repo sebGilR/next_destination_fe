@@ -26,7 +26,7 @@ export const removeFavorite = data => ({
 
 export const createUser = data => ({
   type: 'CREATE_USER',
-  payload: data
+  payload: data,
 });
 
 export const logIn = data => ({
@@ -39,13 +39,13 @@ export const logOut = () => ({
 });
 
 export const toggleMenu = () => ({
-  type: 'TOGGLE_MENU'
+  type: 'TOGGLE_MENU',
 });
 
 export const startLoading = () => ({
-  type: 'START_LOADING'
+  type: 'START_LOADING',
 });
 
 export const endLoading = () => ({
-  type: 'END_LOADING'
+  type: 'END_LOADING',
 });
