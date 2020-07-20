@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
-import Header from './Header';
+import Header from '../components/Header';
 import styles from '../assets/style/Details.module.scss';
 
 const Details = ({
