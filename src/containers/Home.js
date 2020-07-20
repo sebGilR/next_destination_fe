@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Carousel from '../components/Carousel';
 import Favorites from '../components/Favorites';
-import Details from '../components/Details';
+import Details from './Details';
 import Dashboard from './Dashboard';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
@@ -35,7 +35,7 @@ const Home = ({ user, destinations, logOut, menu, toggleMenu }) => {
         </Route>
         <Route path="/">
           <Header title="Home" home menu={menu} toggleMenu={toggleMenu} />
-          <Carousel destinations={destinations} menu={menu} />
+          <Carousel destinations={destinations} menu={menu} toggleMenu={toggleMenu} />
         </Route>
       </Switch>
     </Router>
