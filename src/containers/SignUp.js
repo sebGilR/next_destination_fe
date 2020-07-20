@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
 import styles from '../assets/style/Login.module.scss';
-import { Link } from 'react-router-dom';
+import Input from '../components/Input';
+
 
 const SignUp = props => {
   const [username, setUsername] = useState('');
@@ -66,24 +68,19 @@ const SignUp = props => {
         <h1>Sign up</h1>
         <p>Hello there! Sign up to start making your travel plans!</p>
         <form onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
-            type="text"
+          <Input type="text"
             name="username"
             value={username}
             placeholder="Enter a username..."
-            onChange={handleInput}
-          />
-          <input
-            className={styles.input}
+            onChange={handleInput} />
+          <Input
             type="password"
             name="password"
             value={password}
             placeholder="Password"
             onChange={handleInput}
           />
-          <input
-            className={styles.input}
+          <Input
             type="password"
             name="password_conf"
             value={password_conf}

@@ -5,6 +5,7 @@ import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
 import { Link } from 'react-router-dom';
 import styles from '../assets/style/Login.module.scss';
+import Input from '../components/Input';
 Axios.defaults.withCredentials = true;
 
 const Login = ({
@@ -43,16 +44,14 @@ const Login = ({
         <h1>Sign in</h1>
         <p>Hello there! Sign in to start making your travel plans!</p>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <input
-            className={styles.input}
+          <Input
             type="text"
             name="username"
             value={username}
             placeholder="Enter your username"
             onChange={handleInput}
           />
-          <input
-            className={styles.input}
+          <Input
             type="password"
             name="password"
             value={password}
