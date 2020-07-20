@@ -7,6 +7,10 @@
 
 .moved {
   margin-left: 200px;
+
+  &.slider {
+    scroll-padding-left: 200px;
+  }
 }
 
 .slider {
@@ -15,6 +19,8 @@
   overflow-x: scroll;
   padding-bottom: 15px;
   height: 100%;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
 
   & > a:last-child {
     padding-right: 25px;
