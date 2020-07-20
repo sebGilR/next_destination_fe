@@ -5,6 +5,7 @@
   user-select: none;
   font-size: 90%;
   scroll-snap-align: center;
+  scroll-snap-stop: always;
 
   img {
     object-fit: cover;
