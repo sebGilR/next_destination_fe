@@ -4,7 +4,7 @@ import styles from '../assets/style/Carousel.module.scss';
 import $ from 'jquery';
 import 'jquery-mousewheel';
 
-const Carousel = ({ destinations, menu }) => {
+const Carousel = ({ destinations, menu, toggleMenu }) => {
 
   $(document).ready(function () {
     $(`.${styles.slider}`).mousewheel(function (e, delta) {
@@ -12,8 +12,15 @@ const Carousel = ({ destinations, menu }) => {
     });
   });
 
+  const handleMenu = () => {
+    if (menu) toggleMenu();
+  }
+
   return (
-    <div className={`${styles.container} ${menu && styles.moved}`.trim()}>
+    <div
+      className={`${styles.container} ${menu && styles.moved}`.trim()}
+      onClick={handleMenu}
+    >
       <div className={styles.slider}>
         {
           destinations.map((dest, i) =>
