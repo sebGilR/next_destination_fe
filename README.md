@@ -37,9 +37,10 @@ This is the front-end part of the Next Destination application. This mobile web 
 ## Setup
 
 1. Clone this repository and access the project's directory.
-2. Run "npm install".
-3. Run "npm test" to run the tests.
-4. Run "npm start" to work on the development server.
+2. Update the endpoint BASE url in src/services/endpoint.js with localhost:4000.
+3. Run "npm install".
+4. Run "npm test" to run the tests.
+5. Run "npm start" to work on the development server.
 
 ## Built With
 
