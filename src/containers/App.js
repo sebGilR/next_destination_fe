@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Axios from 'axios';
 import {
@@ -82,6 +83,21 @@ const App = ({
 
     </div>
   );
+};
+
+App.defaultProps = {
+  destinations: [],
+};
+
+App.propTypes = {
+  changeDestinations: PropTypes.func.isRequired,
+  destinations: PropTypes.arrayOf(Object),
+  user: PropTypes.objectOf(Object).isRequired,
+  logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  endLoading: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

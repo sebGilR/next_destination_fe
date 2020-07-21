@@ -32,7 +32,7 @@
 .icon {
   margin-right: 15px;
   font-size: 90%;
-  color: #EE5419;
+  color: #ee5419;
   text-shadow: none;
 }
 
@@ -41,7 +41,7 @@
 
   button {
     border: 0;
-    background-color: #EE5419;
+    background-color: #ee5419;
     width: 100%;
     height: 60px;
     font-size: 130%;
@@ -73,14 +73,13 @@
     color: rgb(42, 42, 42);
   }
 
-
   &::-webkit-scrollbar {
     width: 5px;
     background-color: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #EE5419;
+    background-color: #ee5419;
     border-radius: 2px;
   }
 }

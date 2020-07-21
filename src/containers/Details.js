@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
@@ -103,10 +104,19 @@ const Details = ({
   );
 };
 
+Details.propTypes = {
+  user: PropTypes.objectOf(Object).isRequired,
+  logIn: PropTypes.func.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  endLoading: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   favorites: state.user.favorites,
   user: state.user,
-  destinations: state.destinations,
   loading: state.loading,
   menu: state.menu,
 });

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from './Header';
+import Header from '../components/Header';
 import styles from '../assets/style/Favorites.module.scss';
 
 const Favorites = ({
@@ -28,11 +28,12 @@ const Favorites = ({
       })
       .catch(() => setError());
     endLoading();
-  }
+  };
   return (
-    <><div className={styles.header}>
-      <Header title="Favorites" toggleMenu={toggleMenu} />
-    </div>
+    <>
+      <div className={styles.header}>
+        <Header title="Favorites" toggleMenu={toggleMenu} />
+      </div>
       {error && 'Something went wrong... Try reloading this page.'}
       <table className={styles.container}>
         <thead>
@@ -41,26 +42,41 @@ const Favorites = ({
           </tr>
         </thead>
         <tbody>
-          {!error && !loading &&
-            favorites.map(favorite =>
+          {!error && !loading
+            && favorites.map(favorite => (
               <tr key={favorite.id}>
                 <td>
-                  <Link to={`/${favorite.destination_id}`} >
+                  <Link to={`/${favorite.destination_id}`}>
                     {destinations.find(dest => dest.id === favorite.destination_id).name}
                   </Link>
                 </td>
                 <td>
-                  {!loading &&
-                    <button onClick={() => handleRemoveFavorite(favorite.id)}>Remove</button>
-                  }
+                  {!loading
+                    && (
+                      <button
+                        onClick={() => handleRemoveFavorite(favorite.id)}
+                        type="button"
+                      >
+                        Remove
+                      </button>
+                    )}
                 </td>
               </tr>
-            )
-          }
+            ))}
         </tbody>
-      </table >
+      </table>
     </>
-  )
+  );
+};
+
+Favorites.propTypes = {
+  user: PropTypes.objectOf(Object).isRequired,
+  logIn: PropTypes.func.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  endLoading: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

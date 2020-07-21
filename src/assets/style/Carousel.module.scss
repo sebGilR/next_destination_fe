@@ -19,7 +19,7 @@
   overflow-x: scroll;
   padding-bottom: 15px;
   height: 100%;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 
   & > div:last-child {
@@ -37,9 +37,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #EE5419;
+    background-color: #ee5419;
     border-radius: 2px;
   }
 }
-
-  

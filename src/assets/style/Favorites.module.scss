@@ -14,19 +14,20 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #EE5419;
+    background-color: #ee5419;
     border-radius: 2px;
   }
 
   thead {
     text-align: left;
+
     th {
       font-weight: 500;
       padding: 15px 30px;
     }
   }
 
-  tbody tr{
+  tbody tr {
     td {
       line-height: 30px;
       border-top: 1px solid rgba(211, 211, 211, 0.493);
@@ -42,7 +43,7 @@
         line-height: 30px;
 
         &:hover {
-          color: #EE5419;
+          color: #ee5419;
         }
       }
     }
@@ -55,7 +56,6 @@
 
     button {
       display: inline-block;
-      border: none;
       background-color: transparent;
       width: 100%;
       min-width: 75px;
@@ -66,8 +66,8 @@
       outline: none;
 
       &:hover {
-        background-color: #EE5419;
-        border: 1px solid #EE5419;
+        background-color: #ee5419;
+        border: 1px solid #ee5419;
         box-shadow: 0 0 15px #ee551977;
         color: white;
       }

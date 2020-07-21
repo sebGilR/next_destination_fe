@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Actions from '../store/actions';
 import * as EP from '../services/endpoint';
@@ -99,6 +100,10 @@ const SignUp = props => {
       </div>
     </div>
   );
+};
+
+SignUp.propTypes = {
+  createUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

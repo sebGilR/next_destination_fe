@@ -22,14 +22,15 @@
   line-height: 30px;
   border-radius: 15px;
   border: 1px solid gray;
-  background-color: transparent ;
+  background-color: transparent;
   text-align: center;
   color: gray;
   outline: none;
 
-  &:hover, &:focus   {
-    border: 1px solid #EE5419;
-    color: #EE5419;
+  &:hover,
+  &:focus {
+    border: 1px solid #ee5419;
+    color: #ee5419;
     box-shadow: 0 0 10px #ee551977;
   }
 }
@@ -47,14 +48,15 @@
   line-height: 17px;
   border-radius: 15px;
   border: 1px solid gray;
-  background-color: transparent ;
+  background-color: transparent;
   text-align: left;
   color: gray;
   outline: none;
 
-  &:hover, &:focus   {
-    border: 1px solid #EE5419;
-    color: #EE5419;
+  &:hover,
+  &:focus {
+    border: 1px solid #ee5419;
+    color: #ee5419;
     box-shadow: 0 0 10px #ee551977;
   }
 }
@@ -64,7 +66,7 @@
   padding: 0 30px;
   height: 30px;
   line-height: 30px;
-  background-color:  #EE5419;
+  background-color: #ee5419;
   color: white;
   border: 0;
   border-radius: 15px;
@@ -81,7 +83,7 @@
   top: 30px;
   right: 15px;
   font-size: 1.5em;
-  color: #EE5419;
+  color: #ee5419;
   cursor: pointer;
 
   &:hover {

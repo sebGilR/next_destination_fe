@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 import * as EP from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
@@ -128,19 +129,33 @@ const Dashboard = ({
         )}
       {form
         && (
-        <DestinationForm
-          dest={dest}
-          newD={newD}
-          handleClose={handleClose}
-          handleSubmit={handleSubmit}
-        />
+          <DestinationForm
+            dest={dest}
+            newD={newD}
+            handleClose={handleClose}
+            handleSubmit={handleSubmit}
+          />
         )}
     </section>
   );
 };
 
+Dashboard.defaultProps = {
+  destinations: [],
+};
+
+Dashboard.propTypes = {
+  destinations: PropTypes.arrayOf(Object),
+  startLoading: PropTypes.func.isRequired,
+  endLoading: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+  addDestination: PropTypes.func.isRequired,
+  updateDestinations: PropTypes.func.isRequired,
+  removeDestination: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
-  user: state.user,
   destinations: state.destinations,
   loading: state.loading,
 });
