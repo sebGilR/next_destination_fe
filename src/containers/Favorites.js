@@ -10,7 +10,7 @@ import styles from '../assets/style/Favorites.module.scss';
 
 const Favorites = ({
   toggleMenu,
-  favorites,
+  user,
   destinations,
   loading,
   startLoading,
@@ -43,7 +43,7 @@ const Favorites = ({
         </thead>
         <tbody>
           {!error && !loading
-            && favorites.map(favorite => (
+            && user.favorites.map(favorite => (
               <tr key={favorite.id}>
                 <td>
                   <Link to={`/${favorite.destination_id}`}>
@@ -69,9 +69,13 @@ const Favorites = ({
   );
 };
 
+Favorites.defaultProps = {
+  destinations: [],
+};
+
 Favorites.propTypes = {
   user: PropTypes.objectOf(Object).isRequired,
-  logIn: PropTypes.func.isRequired,
+  destinations: PropTypes.arrayOf(Array),
   startLoading: PropTypes.func.isRequired,
   endLoading: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
@@ -80,7 +84,6 @@ Favorites.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  favorites: state.user.favorites,
   user: state.user,
   destinations: state.destinations,
   loading: state.loading,
@@ -88,7 +91,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logIn: data => dispatch(Actions.logIn(data)),
   startLoading: () => dispatch(Actions.startLoading()),
   endLoading: () => dispatch(Actions.endLoading()),
   removeFavorite: data => dispatch(Actions.removeFavorite(data)),

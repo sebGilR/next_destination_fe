@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 import Carousel from '../components/Carousel';
-import Favorites from '../containers/Favorites';
+import Favorites from './Favorites';
 import Details from './Details';
 import Dashboard from './Dashboard';
 import * as EP from '../services/endpoint';

@@ -11,7 +11,7 @@ const store = createStore(rootReducer, {
   user: {},
   destinations: [],
   menu: false,
-})
+});
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,5 +19,5 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);
