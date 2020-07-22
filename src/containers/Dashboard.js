@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  deleteDest, updateDest, saveNewDest
+  deleteDest, updateDest, saveNewDest,
 } from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
@@ -44,14 +44,14 @@ const Dashboard = ({
         name,
         description,
         img_url: imgUrl,
-      }, addDestination, setError)
+      }, addDestination, setError);
     } else {
       updateDest(id,
         {
           name,
           description,
           img_url: imgUrl,
-        }, updateDestinations, setError)
+        }, updateDestinations, setError);
     }
 
     endLoading();

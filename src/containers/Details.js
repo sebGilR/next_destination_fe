@@ -26,19 +26,19 @@ const Details = ({
     startLoading();
     markFavorite({
       destination_id: destination.id,
-    }, logIn, setError)
+    }, logIn, setError);
     endLoading();
   };
 
   const handleRemoveFavorite = () => {
     startLoading();
-    removeFav(favorite.id, removeFavorite, setError)
+    removeFav(favorite.id, removeFavorite, setError);
     endLoading();
   };
 
   const handleFetchDestination = useCallback(() => {
     startLoading();
-    getDestination(id, setDestination, setError)
+    getDestination(id, setDestination, setError);
     endLoading();
   }, [startLoading, endLoading, setError, setDestination, id]);
 

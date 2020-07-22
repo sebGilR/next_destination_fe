@@ -33,7 +33,7 @@ const SignUp = props => {
       username,
       password,
       password_confirmation: passwordConf,
-    }, props.createUser, setError)
+    }, props.createUser, setError);
   };
 
   const testPasswors = () => {

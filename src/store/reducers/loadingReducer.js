@@ -1,6 +1,6 @@
 import {
   START_LOADING,
-  END_LOADING
+  END_LOADING,
 } from '../actions';
 
 const loadingReducer = (state = true, action) => {

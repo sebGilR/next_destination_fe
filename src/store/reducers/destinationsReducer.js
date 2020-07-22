@@ -2,7 +2,7 @@ import {
   CHANGE_DESTINATIONS,
   ADD_DESTINATION,
   UPDATE_DESTINATION,
-  REMOVE_DESTINATION
+  REMOVE_DESTINATION,
 } from '../actions';
 
 const destinationsReducer = (state = [], action) => {

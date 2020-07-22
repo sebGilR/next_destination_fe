@@ -18,7 +18,7 @@ const Home = ({
 }) => {
   const history = useHistory();
   const handleLogOut = () => {
-    logOutUser(logOut, history.push)
+    logOutUser(logOut, history.push);
   };
 
   return (

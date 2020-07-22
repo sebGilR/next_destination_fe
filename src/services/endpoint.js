@@ -16,7 +16,7 @@ export const createNewUser = (data, createUser, setError) => {
       createUser(result.data);
     })
     .catch(() => setError(true));
-}
+};
 
 export const logInUser = (data, logIn, setError) => {
   Axios
@@ -25,7 +25,7 @@ export const logInUser = (data, logIn, setError) => {
       logIn(result.data);
     })
     .catch(() => setError(true));
-}
+};
 
 export const logOutUser = (logOut, push) => {
   Axios
@@ -34,7 +34,7 @@ export const logOutUser = (logOut, push) => {
       logOut();
       push('/login');
     });
-}
+};
 
 export const removeFav = (favId, removeFavorite, setError) => {
   Axios
@@ -43,7 +43,7 @@ export const removeFav = (favId, removeFavorite, setError) => {
       removeFavorite(favId);
     })
     .catch(() => setError());
-}
+};
 
 export const markFavorite = (data, logIn, setError) => {
   Axios
@@ -54,7 +54,7 @@ export const markFavorite = (data, logIn, setError) => {
     .catch(() => {
       setError(true);
     });
-}
+};
 
 export const getDestinations = (changeDestinations, setError) => {
   Axios
@@ -65,7 +65,7 @@ export const getDestinations = (changeDestinations, setError) => {
     .catch(() => {
       setError(true);
     });
-}
+};
 
 export const checkConnection = (connected, logIn, logOut, setError) => {
   Axios
@@ -78,7 +78,7 @@ export const checkConnection = (connected, logIn, logOut, setError) => {
       }
     })
     .catch(() => setError());
-}
+};
 
 export const getDestination = (id, setDestination, setError) => {
   Axios
@@ -87,7 +87,7 @@ export const getDestination = (id, setDestination, setError) => {
       setDestination(result.data.destination);
     })
     .catch(setError());
-}
+};
 
 export const saveNewDest = (data, addDestination, setError) => {
   Axios
@@ -96,7 +96,7 @@ export const saveNewDest = (data, addDestination, setError) => {
       addDestination(result.data.destination);
     })
     .catch(() => setError(true));
-}
+};
 
 export const updateDest = (id, data, updateDestinations, setError) => {
   Axios
@@ -105,11 +105,11 @@ export const updateDest = (id, data, updateDestinations, setError) => {
       updateDestinations(result.data.destination);
     })
     .catch(() => setError(true));
-}
+};
 
 export const deleteDest = (id, removeDestination, setError) => {
   Axios
     .delete(`${DEST}/${id}`)
     .then(() => removeDestination(id))
     .catch(() => setError(true));
-}
+};

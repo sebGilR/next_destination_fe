@@ -2,7 +2,7 @@ import {
   CREATE_USER,
   LOG_IN,
   LOG_OUT,
-  REMOVE_FAVORITE
+  REMOVE_FAVORITE,
 } from '../actions';
 
 const userReducer = (state = {}, action) => {
