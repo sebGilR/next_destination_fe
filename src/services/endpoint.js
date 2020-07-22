@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-export const BASE = 'http://127.0.0.1:4000//api/v1/';
+export const BASE = 'https://next-destination.herokuapp.com/api/v1/';
 export const DEST = 'destinations';
 export const FAV = 'favorites';
 export const USERS = 'users';
