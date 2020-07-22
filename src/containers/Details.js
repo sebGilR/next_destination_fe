@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
-import * as EP from '../services/endpoint';
+import { markFavorite, removeFav, getDestination } from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
 import styles from '../assets/style/Details.module.scss';
@@ -25,38 +24,21 @@ const Details = ({
   // Handlers
   const handleMarkFavorite = () => {
     startLoading();
-    Axios.post(`${EP.BASE}${EP.FAV}`,
-      {
-        destination_id: destination.id,
-      }, { withCredentials: true })
-      .then(result => {
-        logIn(result.data);
-      })
-      .catch(() => {
-        setError(true);
-      });
+    markFavorite({
+      destination_id: destination.id,
+    }, logIn, setError)
     endLoading();
   };
 
   const handleRemoveFavorite = () => {
     startLoading();
-    Axios.delete(`${EP.BASE}${EP.FAV}/${favorite.id}`,
-      { withCredentials: true })
-      .then(() => {
-        removeFavorite(favorite.id);
-      })
-      .catch(() => setError(true));
+    removeFav(favorite.id, removeFavorite, setError)
     endLoading();
   };
 
   const handleFetchDestination = useCallback(() => {
     startLoading();
-
-    Axios.get(`${EP.BASE}${EP.DEST}/${id}`)
-      .then(result => {
-        setDestination(result.data.destination);
-      })
-      .catch(setError());
+    getDestination(id, setDestination, setError)
     endLoading();
   }, [startLoading, endLoading, setError, setDestination, id]);
 

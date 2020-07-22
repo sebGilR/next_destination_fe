@@ -6,7 +6,7 @@ import Axios from 'axios';
 import {
   BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
-import * as EP from '../services/endpoint';
+import { getDestinations, checkConnection } from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -28,37 +28,23 @@ const App = ({
   // Handlers
   const handleFetchDestinations = React.useCallback(() => {
     startLoading();
-
-    Axios.get(`${EP.BASE}${EP.DEST}`)
-      .then(result => {
-        changeDestinations(result.data.destinations);
-        endLoading();
-      })
-      .catch(() => {
-        setError(true);
-      });
+    getDestinations(changeDestinations, setError);
+    endLoading();
   }, [startLoading, endLoading, changeDestinations, setError]);
 
   const verifyConnection = useCallback(() => {
-    Axios.get(`${EP.BASE}${EP.AUTH}/connected`)
-      .then(result => {
-        if (result.data.connected && !user.connected) {
-          logIn(result.data);
-        } else if (!result.data.connected && user.connected) {
-          logOut();
-        }
-      })
-      .catch(() => setError());
+    checkConnection(user, logIn, logOut, setError);
   }, [logIn, logOut, user.connected]);
 
   // Effects
-  React.useEffect(() => {
-    verifyConnection();
-  }, [verifyConnection, destinations]);
 
   React.useEffect(() => {
     handleFetchDestinations();
   }, [handleFetchDestinations, user.favorites]);
+
+  React.useEffect(() => {
+    verifyConnection();
+  }, [verifyConnection, destinations]);
 
   return (
     <div>

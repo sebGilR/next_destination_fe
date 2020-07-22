@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Actions from '../store/actions';
-import * as EP from '../services/endpoint';
+import { createNewUser } from '../services/endpoint';
 import styles from '../assets/style/Login.module.scss';
 import Input from '../components/Input';
 
@@ -30,15 +29,11 @@ const SignUp = props => {
     e.preventDefault();
     setLoading(true);
 
-    Axios.post(`${EP.BASE}${EP.USERS}`, {
+    createNewUser({
       username,
       password,
       password_confirmation: passwordConf,
-    })
-      .then(result => {
-        props.createUser(result.data);
-      })
-      .catch(() => setError(true));
+    }, props.createUser, setError)
   };
 
   const testPasswors = () => {

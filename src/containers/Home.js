@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router, Switch, Route, useHistory,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
@@ -11,7 +10,7 @@ import Carousel from '../components/Carousel';
 import Favorites from './Favorites';
 import Details from './Details';
 import Dashboard from './Dashboard';
-import * as EP from '../services/endpoint';
+import { logOutUser } from '../services/endpoint';
 import * as Actions from '../store/actions';
 
 const Home = ({
@@ -19,12 +18,7 @@ const Home = ({
 }) => {
   const history = useHistory();
   const handleLogOut = () => {
-    Axios.delete(`${EP.BASE}${EP.AUTH}/logout`,
-      { withCredentials: true })
-      .then(() => {
-        logOut();
-        history.push('/login');
-      });
+    logOutUser(logOut, history.push)
   };
 
   return (

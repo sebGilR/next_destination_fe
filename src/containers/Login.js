@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Actions from '../store/actions';
-import * as EP from '../services/endpoint';
+import { logInUser } from '../services/endpoint';
 import styles from '../assets/style/Login.module.scss';
 import Input from '../components/Input';
-
-Axios.defaults.withCredentials = true;
 
 const Login = ({
   logIn,
@@ -30,14 +27,10 @@ const Login = ({
   const handleSubmit = e => {
     e.preventDefault();
 
-    Axios.post(`${EP.BASE}${EP.AUTH}/login`, {
+    logInUser({
       username,
       password,
-    })
-      .then(result => {
-        logIn(result.data);
-      })
-      .catch(() => setError(true));
+    }, logIn, setError);
   };
 
   return (

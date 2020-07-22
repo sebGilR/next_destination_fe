@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
-import * as EP from '../services/endpoint';
+import {
+  deleteDest, updateDest, saveNewDest
+} from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
 import DestinationForm from '../components/DestinationForm';
@@ -39,25 +40,18 @@ const Dashboard = ({
     startLoading();
 
     if (newD) {
-      Axios.post(`${EP.BASE}${EP.DEST}`, {
+      saveNewDest({
         name,
         description,
         img_url: imgUrl,
-      }, { withCredentials: true })
-        .then(result => {
-          addDestination(result.data.destination);
-        })
-        .catch(() => setError(true));
+      }, addDestination, setError)
     } else {
-      Axios.put(`${EP.BASE}${EP.DEST}/${id}`, {
-        name,
-        description,
-        img_url: imgUrl,
-      }, { withCredentials: true })
-        .then(result => {
-          updateDestinations(result.data.destination);
-        })
-        .catch(() => setError(true));
+      updateDest(id,
+        {
+          name,
+          description,
+          img_url: imgUrl,
+        }, updateDestinations, setError)
     }
 
     endLoading();
@@ -65,12 +59,7 @@ const Dashboard = ({
 
   const handleDelete = id => {
     startLoading();
-
-    Axios.delete(`${EP.BASE}${EP.DEST}/${id}`, {
-      withCredentials: true,
-    })
-      .then(() => removeDestination(id))
-      .catch(() => setError(true));
+    deleteDest(id, removeDestination, setError);
     endLoading();
   };
 

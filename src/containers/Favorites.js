@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import * as EP from '../services/endpoint';
+import { removeFav } from '../services/endpoint';
 import * as Actions from '../store/actions';
 import Header from '../components/Header';
 import styles from '../assets/style/Favorites.module.scss';
@@ -21,14 +20,10 @@ const Favorites = ({
 
   const handleRemoveFavorite = favId => {
     startLoading();
-    Axios.delete(`${EP.BASE}${EP.FAV}/${favId}`,
-      { withCredentials: true })
-      .then(() => {
-        removeFavorite(favId);
-      })
-      .catch(() => setError());
+    removeFav(favId, removeFavorite, setError);
     endLoading();
   };
+
   return (
     <>
       <div className={styles.header}>
