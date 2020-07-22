@@ -8,8 +8,20 @@ import 'jquery-mousewheel';
 const Carousel = ({ destinations, menu, toggleMenu }) => {
   $(document).ready(() => {
     $(`.${styles.slider}`).mousewheel(function Mousewheel(e, delta) {
+      let spacing;
+      const docWidth = $(document).width();
+      if (docWidth < 800) {
+        spacing = (destinations.length * 25) + 50;
+      } else if (docWidth >= 800 && docWidth < 1000) {
+        spacing = (destinations.length * 25) + 100;
+      } else if (docWidth >= 1000 && docWidth < 1300) {
+        spacing = (destinations.length * 25) + 200;
+      } else {
+        spacing = (destinations.length * 25) + 500;
+      }
+      const width = ($(`.${styles.container}`).width() / destinations.length) + spacing;
       // Next line rule disabled since "this" is required for this code snippet
-      this.scrollLeft -= (delta * $(`.${styles.container}`).width()); // eslint-disable-line
+      this.scrollLeft -= (delta * width); // eslint-disable-line
     });
   });
 
