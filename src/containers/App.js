@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import Axios from 'axios';
 import {
   BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
@@ -33,7 +31,7 @@ const App = ({
   }, [startLoading, endLoading, changeDestinations, setError]);
 
   const verifyConnection = useCallback(() => {
-    checkConnection(user, logIn, logOut, setError);
+    checkConnection(user.connected, logIn, logOut, setError);
   }, [logIn, logOut, user.connected]);
 
   // Effects

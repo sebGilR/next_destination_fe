@@ -67,13 +67,13 @@ export const getDestinations = (changeDestinations, setError) => {
     });
 }
 
-export const checkConnection = (user, logIn, logOut, setError) => {
+export const checkConnection = (connected, logIn, logOut, setError) => {
   Axios
     .get(`${AUTH}/connected`)
     .then(result => {
-      if (result.data.connected && !user.connected) {
+      if (result.data.connected && !connected) {
         logIn(result.data);
-      } else if (!result.data.connected && user.connected) {
+      } else if (!result.data.connected && connected) {
         logOut();
       }
     })

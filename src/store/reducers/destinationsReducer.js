@@ -1,15 +1,22 @@
+import {
+  CHANGE_DESTINATIONS,
+  ADD_DESTINATION,
+  UPDATE_DESTINATION,
+  REMOVE_DESTINATION
+} from '../actions';
+
 const destinationsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'CHANGE_DESTINATIONS':
+    case CHANGE_DESTINATIONS:
       return [...action.payload];
-    case 'ADD_DESTINATION':
+    case ADD_DESTINATION:
       return [...state, action.payload];
-    case 'UPDATE_DESTINATION':
+    case UPDATE_DESTINATION:
       return [
         ...state.filter(dest => dest.id !== action.id),
         action.payload,
       ];
-    case 'REMOVE_DESTINATION':
+    case REMOVE_DESTINATION:
       return [
         ...state.filter(dest => dest.id !== action.payload),
       ];
