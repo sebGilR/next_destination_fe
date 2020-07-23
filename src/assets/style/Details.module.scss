@@ -1,0 +1,98 @@
+@mixin tablet {
+  @media (min-width: 500px) { @content; }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+}
+
+.image {
+  position: relative;
+  height: 55%;
+  width: 100%;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-weight: bold;
+    color: white;
+    font-size: 130%;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.959);
+  }
+}
+
+.icon {
+  margin-right: 15px;
+  font-size: 90%;
+  color: #ee5419;
+  text-shadow: none;
+}
+
+.body {
+  height: calc(45% - 60px);
+
+  button {
+    display: inline-block;
+    border: 0;
+    background-color: #ee5419;
+    width: 100%;
+    height: 60px;
+    font-size: 130%;
+    font-weight: 500;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      box-shadow: 0 0 15px #ee551977;
+    }
+
+    @include tablet {
+      width: 250px;
+      height: 40px;
+      border-radius: 30px;
+      left: 20px;
+      bottom: 20px;
+    }
+  }
+}
+
+.description {
+  height: calc(100% - 10px);
+  padding: 30px 40px;
+  color: #707070;
+  font-size: 110%;
+  overflow-y: scroll;
+  line-height: 25px;
+
+  h2 {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgb(42, 42, 42);
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ee5419;
+    border-radius: 2px;
+  }
+}

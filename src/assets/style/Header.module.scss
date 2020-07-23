@@ -1,0 +1,34 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 60px;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.icon {
+  position: absolute;
+  line-height: 100%;
+  font-size: 1.2em;
+  padding: 5px 10px;
+  margin-left: 15px;
+  color: rgb(128, 128, 128);
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: #ee5419;
+  }
+}
+
+.moved {
+  margin-left: 200px;
+}

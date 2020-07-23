@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  padding: 20px 0;
+}
+
+.moved {
+  margin-left: 200px;
+
+  &.slider {
+    scroll-padding-left: 200px;
+  }
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  padding-bottom: 15px;
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 100px;
+  scroll-padding-right: 100px;
+
+  & > div:last-child {
+    padding-right: 25px;
+    min-width: calc(80vw + 25px);
+  }
+
+  & > div:first-child {
+    margin-left: 25px;
+  }
+
+  &::-webkit-scrollbar {
+    height: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ee5419;
+    border-radius: 2px;
+  }
+}
