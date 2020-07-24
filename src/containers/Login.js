@@ -10,6 +10,8 @@ import Input from '../components/Input';
 const Login = ({
   logIn,
   loading,
+  startLoading,
+  endLoading,
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,12 +27,13 @@ const Login = ({
   };
 
   const handleSubmit = e => {
+    startLoading();
     e.preventDefault();
-
     logInUser({
       username,
       password,
     }, logIn, setError);
+    endLoading();
   };
 
   return (
@@ -76,6 +79,8 @@ const Login = ({
 Login.propTypes = {
   logIn: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  endLoading: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -84,6 +89,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logIn: data => dispatch(Actions.logIn(data)),
+  startLoading: () => dispatch(Actions.startLoading()),
+  endLoading: () => dispatch(Actions.endLoading()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
