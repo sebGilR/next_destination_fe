@@ -18,9 +18,6 @@ const Menu = ({
     </div>
     <ul className={styles.nav}>
       <li>
-        <Link to="/" onClick={toggleMenu}>Home</Link>
-      </li>
-      <li>
         <Link to="/favorites" onClick={toggleMenu}>
           Favorites
           <span className={styles.tag}>{user.favorites.length}</span>
