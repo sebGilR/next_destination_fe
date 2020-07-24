@@ -7,7 +7,6 @@
   padding: 30px 0 30px 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   font-size: 110%;
 }
 
@@ -33,7 +32,7 @@
 
 .nav,
 ul {
-  margin-top: -150px;
+  margin-top: 50px;
   margin-left: -25px;
 }
 
@@ -63,4 +62,9 @@ li {
   color: white;
   border-radius: 15px;
   font-size: 85%;
+}
+
+.logout {
+  position: absolute;
+  bottom: 40px;
 }

@@ -45,6 +45,7 @@ const Menu = ({
         }}
         onKeyPress={toggleMenu}
         role="presentation"
+        className={styles.logout}
       >
         Log out
       </li>
